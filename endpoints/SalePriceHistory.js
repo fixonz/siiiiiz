@@ -1,12 +1,12 @@
 import { Alchemy, Network, NftFilters, NftSaleMarketplace } from "alchemy-sdk";
-
+export default async function getBuyCost() {
+    // Function implementation
+  }
 const config = {
-    apiKey: "9R5XwFiqIgFRekEmtEomNMQAPO7h1vZG",
+    apiKey: "6W-cG4zhb1df1lZl-EwOfEoawhLwX9-S",
     network: Network.ETH_MAINNET,
 };
-
 const alchemy = new Alchemy(config);
-
 const main = async () => {
 
     //contract address
@@ -35,7 +35,7 @@ const runMain = async () => {
         process.exit(0);
     } catch (error) {
         console.log(error);
-        process.exit(1);
+        process.exit(0);
     }
 };
 

@@ -3,7 +3,7 @@ import { Alchemy, Network } from "alchemy-sdk";
 
 // configuring the Alchemy SDK
 const config = {
-  apiKey: "9R5XwFiqIgFRekEmtEomNMQAPO7h1vZG", // Replace with your Alchemy API Key.
+  apiKey: "6W-cG4zhb1df1lZl-EwOfEoawhLwX9-S", // Replace with your Alchemy API Key.
   network: Network.ETH_MAINNET, // Replace with the network your NFT contract is deployed to.
 };
 const alchemy = new Alchemy(config);

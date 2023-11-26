@@ -4,9 +4,9 @@ import { freeMintChecker } from "./freemint.js";
 
 
 export default async function getWalletTrades(walletAddress, collectionSlug) {
-  try {
-    const apiKey = "ea1b7233061742b88f7307d095049381";
-    const apiUrl = `https://api.opensea.io/api/v1/events?account_address=${walletAddress}&collection_slug=${collectionSlug}&event_type=successful`;
+  try {    const apiUrl = `https://api.opensea.io/api/v1/events?account_address=${walletAddress}&collection_slug=${collectionSlug}&event_type=successful`;
+
+    const apiKey = "046240e251c14f8db72077a3b93e8b36";
 
     const { body } = await request(apiUrl, {
       headers: {
@@ -24,7 +24,7 @@ export default async function getWalletTrades(walletAddress, collectionSlug) {
     // Empty arrays to store the extracted data
 
     const walletTrades = [];
-
+    const nftSales = [];
     // Loop through the response array and extract the token IDs and timestamps
     for (let i = 0; i < response.asset_events.length; i++) {
       // console.log(response.asset_events[0].transaction.timestamp)
@@ -36,10 +36,13 @@ export default async function getWalletTrades(walletAddress, collectionSlug) {
       const unixTimestamp = Math.floor(date.getTime() / 1000);
 
       const hash = item.transaction.transaction_hash;
-      const Ethvalue = await getTransactionData(hash);
+      // const Ethvalue = await getTransactionData(hash);
       const event = item.event_type
       const price = item.total_price / 1000000000000000000
      // console.log(event, price)
+    // Store extracted data in the arrays
+    walletTrades.push({ tokenId, timestamp, unixTimestamp, event, price });
+    nftSales.push({ tokenId, event, price });
 
       // Push the token ID and timestamp into their respective arrays
       // tokenIds.push(tokenId);
@@ -197,7 +200,7 @@ const collectionSlug = "fuekinft";
 getWalletTrades(walletAddress, collectionSlug)
 
 async function getTransactionPrice(transactionHash) {
-  const etherscanApiKey = "8P4HSVBWRJ1C1B1KEVBF4QG94CXWF9J4PG";
+  const etherscanApiKey = "H6WXYPKYQY6ZWAKRTIZ2JCZTPFPX6IIZDR";
   const etherscanUrl = `https://https://api.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=0x513c1ba0bebf66436b5fed86ab668452b7805593c05073eb2d51d3a52f480a76&apikey=${etherscanApiKey}`;
 
   try {

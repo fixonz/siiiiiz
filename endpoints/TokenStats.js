@@ -6,7 +6,7 @@ const contractAddress = "0xe373db56b558a7d9dd6090124f0857c8d622a427";
 export default async function getTokenStats(Useraddress, nftAddress) {
   try {
     const { body } = await request(
-      `https://api.modulenft.xyz/api/v2/eth/nft/userStats?address=${Useraddress}&contractAddress=${nftAddress}`
+      `https://api.reservoir.tools/users/${Useraddress}/collections/v3?collection=${nftAddress}&includeTopBid=true&includeLiquidCount=true`
     );
     const responseJSON = await body.json();
     const result = await responseJSON.data;
